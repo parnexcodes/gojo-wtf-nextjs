@@ -9,8 +9,8 @@ function PopularAnime({ data }) {
         <div className='flex flex-wrap gap-4'>
             {data.map((item, index) => {
                 return (
-                    <Link href={`/anime/detail/${item.id}`}>
-                    <TrendingCard key={index} data={item} />
+                    <Link key={index} href={`/anime/detail/${item.id}`}>
+                    <TrendingCard  data={item} />
                     </Link>
                 )
             })}
