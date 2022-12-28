@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
 import { FaPlay } from "react-icons/fa";
 import { Icon } from "@chakra-ui/icons";
 
 import Header from "../../../components/Header";
-import Player from "../../../components/Player/Player"
+const Player = dynamic(() => import('../../../components/Player/Player'), {
+  ssr: false
+})
 
 function EpID() {
   const router = useRouter();
@@ -44,7 +47,7 @@ function EpID() {
       <Header />
       <div className="min-h-screen bg-[#181B22] pb-16">
         <div className="mx-8 pt-8">
-          {streamData ? (
+          {streamData && streamData ? (
             <Player data={streamData} />
           ) : (
             <div className="flex justify-center text-white text-4xl">
@@ -53,7 +56,7 @@ function EpID() {
           )}
         </div>
         <div className="flex flex-wrap mx-16 justify-center gap-2">
-          {data ? data.episodes.map((item, index) => {
+          {data && data ? data.episodes.map((item, index) => {
             return (
               <div key={index}>
                 <h1
