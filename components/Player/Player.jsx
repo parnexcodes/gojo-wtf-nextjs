@@ -9,7 +9,6 @@ function Player({ data }) {
     <div>
       <NetPlayer
         className="object-contain w-full h-full text-white"
-        autoPlay
         sources={[
           {
             file: autoQuality == null ? "" : autoQuality[0].url,
