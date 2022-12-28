@@ -46,9 +46,8 @@ function AnimeID({ animeid, data }) {
             <div className="flex space-x-2 mt-4">
               {data.genres.map((item, index) => {
                 return (
-                  <Link href={"/"}>
+                  <Link key={index} href={"/"}>
                     <div
-                      key={index}
                       className="p-2 text-white text-xs bg-[#282C37] hover:bg-lime-500 hover:text-black rounded-md"
                     >
                       {item}
