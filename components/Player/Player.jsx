@@ -2,7 +2,6 @@ import React from "react";
 import NetPlayer from "netplayer";
 
 function Player({ data }) {
-  console.log(data);
   let autoQuality = data?.sources?.filter(
     (source) => source["quality"] == "default"
   );
