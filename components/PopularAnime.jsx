@@ -10,7 +10,7 @@ function PopularAnime({ data }) {
             {data.map((item, index) => {
                 return (
                     <Link href={`/anime/detail/${item.id}`}>
-                    <TrendingCard data={item} />
+                    <TrendingCard key={index} data={item} />
                     </Link>
                 )
             })}

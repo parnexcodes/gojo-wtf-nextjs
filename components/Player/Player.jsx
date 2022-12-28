@@ -17,7 +17,6 @@ function Player({ data }) {
           },
         ]}
       />
-      ;
     </div>
   );
 }

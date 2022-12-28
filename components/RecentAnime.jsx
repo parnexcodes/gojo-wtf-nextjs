@@ -11,7 +11,7 @@ function RecentAnime({ data }) {
             {data.map((item, index) => {
                 return (
                     <Link href={`/anime/detail/${item.id}`}>
-                    <RecentCard data={item} />
+                    <RecentCard key={index} data={item} />
                     </Link>
                 )
             })}
