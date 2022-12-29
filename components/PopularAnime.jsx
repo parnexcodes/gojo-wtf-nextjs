@@ -25,8 +25,8 @@ function PopularAnime({ data }) {
         >
           {data.map((item, index) => {
             return (
-              <SwiperSlide>
-                <Link key={index} href={`/anime/detail/${item.id}`}>
+              <SwiperSlide key={index} >
+                <Link href={`/anime/detail/${item.id}`}>
                   <TrendingCard data={item} />
                 </Link>
               </SwiperSlide>

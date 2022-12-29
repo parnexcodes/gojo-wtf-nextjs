@@ -25,8 +25,8 @@ function RecentAnime({ data }) {
         >
           {data.map((item, index) => {
             return (
-              <SwiperSlide>
-                <Link key={index} href={`/anime/detail/${item.id}`}>
+              <SwiperSlide key={index} >
+                <Link href={`/anime/detail/${item.id}`}>
                   <RecentCard data={item} />
                 </Link>
               </SwiperSlide>
