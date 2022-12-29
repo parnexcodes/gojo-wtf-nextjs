@@ -14,6 +14,7 @@ function EpID() {
   const { epid, id } = router.query;
   const [data, setData] = useState();
   const [streamData, setStreamData] = useState();
+  const [show, setShow] = useState(false)
 
   const fetchData = async (epid, id) => {
     const [streamData, data] = await Promise.all([
@@ -28,14 +29,16 @@ function EpID() {
     ]);
     setData(data);
     setStreamData(streamData);
+    setShow(true)
   };
 
   useEffect(() => {
     fetchData(epid, id);
-  }, [router.isReady, epid]);
+  }, [router.isReady, show]);
 
   const handleClick = (epid, id) => {
     router.push(`/anime/watch/${epid}?id=${id}`)
+    setShow(false)
   }
 
   const handleRoutePushClick = (id) => {
@@ -47,7 +50,7 @@ function EpID() {
       <Header />
       <div className="min-h-screen bg-[#181B22] pb-16">
         <div className="mx-8 pt-8">
-          {streamData && streamData ? (
+          {streamData && streamData && show ? (
             <Player data={streamData} />
           ) : (
             <div className="flex justify-center text-white text-4xl">
@@ -56,7 +59,7 @@ function EpID() {
           )}
         </div>
         <div className="flex flex-wrap mx-16 justify-center gap-2">
-          {data && data ? data.episodes.map((item, index) => {
+          {data && data ? data?.episodes?.map((item, index) => {
             return (
               <div key={index}>
                 <h1
