@@ -10,16 +10,30 @@ import TrendingCard from "./Cards/TrendingCard";
 
 function PopularAnime({ data }) {
   return (
-    <div className="px-[10.5rem] py-8">
+    <div className="md:px-[10.5rem] md:py-8 px-2">
       <h1 className="text-3xl text-white font-bold">Popular Anime</h1>
       <div className="flex flex-wrap gap-4">
         <Swiper
           scrollbar={{
             hide: true,
           }}
-          spaceBetween={16}
-          slidesPerView={6}
+          spaceBetween={-80}
+          slidesPerView={2}
           navigation={true}
+          breakpoints={{
+            640: {
+              slidesPerView: 4,
+              spaceBetween: 16,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 6,
+              spaceBetween: 16,
+            },
+          }}
           modules={[Navigation, Scrollbar]}
           className="mySwiper"
         >

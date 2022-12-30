@@ -5,40 +5,34 @@ import { FaPlay } from "react-icons/fa";
 import { Icon } from "@chakra-ui/icons";
 
 import Header from "../../../components/Header";
-const Player = dynamic(() => import('../../../components/Player/Player'), {
+const VideoPlayer = dynamic(() => import('../../../components/Player/VideoPlayer'), {
   ssr: false
 })
 
-function EpID() {
-  const router = useRouter();
-  const { epid, id } = router.query;
-  const [data, setData] = useState();
-  const [streamData, setStreamData] = useState();
-  const [show, setShow] = useState(false)
+export async function getServerSideProps(context) {
+  let { epid } = context.params
+  let { id } = context.query
+  const [streamData, metaData] = await Promise.all([
+    (
+      await fetch(
+        `https://gojo-wtf-api.vercel.app/anime/gogoanime/watch/${epid}?server=vidstreaming`
+      )
+    ).json(),
+    (
+      await fetch(`https://gojo-wtf-api.vercel.app/meta/anilist/info/${id}`)
+    ).json(),
+  ]);
+  return {
+    props: { streamData, metaData, id }, // will be passed to the page component as props
+  }
+}
 
-  const fetchData = async (epid, id) => {
-    const [streamData, data] = await Promise.all([
-      (
-        await fetch(
-          `https://gojo-wtf-api.vercel.app/anime/gogoanime/watch/${epid}?server=vidstreaming`
-        )
-      ).json(),
-      (
-        await fetch(`https://gojo-wtf-api.vercel.app/meta/anilist/info/${id}`)
-      ).json(),
-    ]);
-    setData(data);
-    setStreamData(streamData);
-    setShow(true)
-  };
-
-  useEffect(() => {
-    fetchData(epid, id);
-  }, [router.isReady, show]);
-
+function EpID({ streamData, metaData, id }) {
+  const router = useRouter()
   const handleClick = (epid, id) => {
-    router.push(`/anime/watch/${epid}?id=${id}`)
-    setShow(false)
+    // setEp(ep)
+    router.push(`/anime/watch/${epid}?id=${id}`).then(() => router.reload())
+    // setShow(false)
   }
 
   const handleRoutePushClick = (id) => {
@@ -50,8 +44,10 @@ function EpID() {
       <Header />
       <div className="min-h-screen bg-[#181B22] pb-16">
         <div className="mx-8 pt-8">
-          {streamData && streamData && show ? (
-            <Player data={streamData} />
+          {streamData && streamData ? (
+            <VideoPlayer data={streamData} 
+            // show={show} ep={ep}
+            />
           ) : (
             <div className="flex justify-center text-white text-4xl">
               Loading...
@@ -59,7 +55,7 @@ function EpID() {
           )}
         </div>
         <div className="flex flex-wrap mx-16 justify-center gap-2">
-          {data && data ? data?.episodes?.map((item, index) => {
+          {metaData && metaData ? metaData?.episodes?.map((item, index) => {
             return (
               <div key={index}>
                 <h1

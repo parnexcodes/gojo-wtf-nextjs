@@ -1,5 +1,8 @@
 import React from "react";
 import Link from "next/link";
+import Search from "./Search";
+import { Icon, SearchIcon } from "@chakra-ui/icons";
+import { AiOutlineUser } from "react-icons/ai";
 
 function Header() {
   return (
@@ -19,11 +22,20 @@ function Header() {
             <li className="bg-[#2E343E] hover:bg-lime-500 hover:text-black px-4 py-2 rounded-md">Recent</li>
           </Link>
         </ul>
-        <Link href={"/"}>
-          <h1 className="bg-[#2E343E] hover:bg-lime-500 hover:text-black px-4 py-2 rounded-md text-white self-center">
-            Login
-          </h1>
-        </Link>
+        <ul className="flex space-x-4 flex-wrap">
+          <li>
+            <Search />
+          </li>
+          <li className="pt-2">
+            <a
+              className="bg-[#2E343E] hover:bg-lime-500 hover:text-black px-4 py-2 rounded-md text-white"
+              href="#"
+            >
+              <Icon className="mr-2" as={AiOutlineUser} />
+              Login
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   );
