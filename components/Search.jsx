@@ -11,7 +11,7 @@ function Search() {
   return (
     <>
       <InputGroup>
-        <InputLeftAddon children={<SearchIcon />} pointerEvents="none" />
+        <InputLeftAddon children={[<SearchIcon />]} pointerEvents="none" />
         <Input
           width={"32"}
           variant="outline"
