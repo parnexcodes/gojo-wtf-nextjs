@@ -11,7 +11,9 @@ function Search() {
   return (
     <>
       <InputGroup>
-        <InputLeftAddon children={[<SearchIcon />]} pointerEvents="none" />
+        <InputLeftAddon pointerEvents="none">
+          <SearchIcon />
+        </InputLeftAddon>
         <Input
           width={"32"}
           variant="outline"
@@ -20,10 +22,10 @@ function Search() {
           onChange={(e) => setQuery(e.target.value)}
           onKeyPress={(e) => {
             if (e.key == "Enter") {
-                router.push(`/search/${query}`);
+              router.push(`/search/${query}`);
             }
           }}
-          type={'search'}
+          type={"search"}
         />
       </InputGroup>
     </>
