@@ -31,7 +31,7 @@ function HomeSlider({ data }) {
         >
           {data.map((item, index) => {
             return (
-              <SwiperSlide>
+              <SwiperSlide key={index}>
                 <img
                   className="min-w-full h-72 object-cover brightness-50 relative mt-6 rounded-md"
                   src={item.cover}
