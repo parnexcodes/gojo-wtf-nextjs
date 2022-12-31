@@ -40,7 +40,29 @@ function AnimeID({ animeid, data }) {
             allowedAttributes: {},
           }).trim()}
         ></meta>
-        <meta property="og:image" content={data.cover} />
+        <meta
+          name="description"
+          content={sanitizeHtml(data.description, {
+            allowedTags: [],
+            allowedAttributes: {},
+          }).trim()}
+        ></meta>
+        <meta property="og:image" content={data.image} />
+        <meta property="image" content={data.image} />
+        <meta
+          name="title"
+          content={`
+${
+  data.title.english != null ? data.title.english : data.title.userPreferred
+} - gojo`}
+        ></meta>
+        <meta
+          name="og:title"
+          content={`
+${
+  data.title.english != null ? data.title.english : data.title.userPreferred
+} - gojo`}
+        ></meta>
       </Head>
       <Header />
       <div className="min-h-screen bg-[#181B22]">
