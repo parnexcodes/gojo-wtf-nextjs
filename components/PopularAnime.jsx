@@ -17,7 +17,7 @@ function PopularAnime({ data }) {
           scrollbar={{
             hide: true,
           }}
-          spaceBetween={-70}
+          spaceBetween={10}
           slidesPerView={2}
           navigation={true}
           breakpoints={{

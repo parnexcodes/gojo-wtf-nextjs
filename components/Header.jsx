@@ -11,7 +11,7 @@ function Header() {
         <Link href={'/'}>
         <img className="h-[64px] rounded-full" src="/logo.png" alt="" />
         </Link>
-        <ul className="flex space-x-8 text-white py-2">
+        <ul className="flex gap-4 text-white py-2">
           <Link href={"/"}>
             <li className="bg-[#2E343E] hover:bg-lime-500 hover:text-black px-4 py-2 rounded-md">Trending</li>
           </Link>
@@ -22,7 +22,7 @@ function Header() {
             <li className="bg-[#2E343E] hover:bg-lime-500 hover:text-black px-4 py-2 rounded-md">Recent</li>
           </Link>
         </ul>
-        <ul className="flex space-x-4 flex-wrap py-2">
+        <ul className="flex gap-4 flex-wrap py-2">
           <li>
             <Search />
           </li>

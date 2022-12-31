@@ -34,17 +34,17 @@ function AnimeID({ animeid, data }) {
         />
         <div className="md:flex md:h-[280px]">
           <img
-            className="h-96 rounded-md relative z-20 md:bottom-32 bottom-20 md:left-10 left-[100px]"
+            className="h-96 rounded-md relative z-20 md:bottom-32 bottom-20 md:left-10 left-[70px]"
             src={data.image}
             alt=""
           />
-          <div className="md:ml-20 mx-10 md:mt-8 mb-8 flex flex-col">
-            <span className="text-4xl font-bold text-white">
+          <div className="md:ml-20 mx-10 md:mt-8 mb-8 -mt-12 flex flex-col">
+            <span className="text-4xl font-bold text-white text-center md:text-left">
               {data.title.english != null
                 ? data.title.english
                 : data.title.userPreferred}
             </span>
-            <div className="flex space-x-2 mt-4">
+            <div className="flex flex-wrap gap-2 mt-4 justify-center md:justify-start">
               {data.genres.map((item, index) => {
                 return (
                   <Link key={index} href={"/"}>
@@ -57,7 +57,7 @@ function AnimeID({ animeid, data }) {
                 );
               })}
             </div>
-            <div className="flex flex-wrap space-x-2 mt-4 text-[#939ba2]">
+            <div className="flex flex-wrap gap-2 mt-4 text-[#939ba2] justify-center">
               <span>
                 <Icon as={AiFillStar} className="mr-1" />
                 {data.rating}
@@ -83,7 +83,7 @@ function AnimeID({ animeid, data }) {
               )}
             </div>
             <Link
-              className="self-start"
+              className="flex justify-center md:self-start"
               href={{
                 pathname: `/anime/watch/${data.episodes[0].id}`,
                 query: {
@@ -99,7 +99,7 @@ function AnimeID({ animeid, data }) {
           </div>
         </div>
         <div className="mx-10">
-          <h1 className="text-3xl text-white">Overview</h1>
+          <h1 className="text-3xl text-white flex justify-center md:justify-start">Overview</h1>
           <h1 className="text-[#939ba2] break-all mt-2">
             {sanitizeHtml(data.description, {
               allowedTags: [],
