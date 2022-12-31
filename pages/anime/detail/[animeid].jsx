@@ -63,6 +63,8 @@ ${
   data.title.english != null ? data.title.english : data.title.userPreferred
 } - gojo`}
         ></meta>
+        <meta property="og:url" content={`https://gojo-wtf-nextjs.vercel.app/anime/detail/${animeid}`}></meta>
+        <meta property="url" content={`https://gojo-wtf-nextjs.vercel.app/anime/detail/${animeid}`}></meta>
       </Head>
       <Header />
       <div className="min-h-screen bg-[#181B22]">
