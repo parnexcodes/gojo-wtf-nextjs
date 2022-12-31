@@ -10,14 +10,14 @@ import TrendingCard from "./Cards/TrendingCard";
 
 function TrendingAnime({ data }) {
   return (
-    <div className="md:px-[10.5rem] md:py-8 px-2">
+    <div className="md:px-[10.5rem] md:py-8 px-4">
       <h1 className="text-3xl text-white font-bold">Trending Anime</h1>
       <div className="flex flex-wrap gap-4">
         <Swiper
           scrollbar={{
             hide: true,
           }}
-          spaceBetween={-80}
+          spaceBetween={-70}
           slidesPerView={2}
           navigation={true}
           breakpoints={{
