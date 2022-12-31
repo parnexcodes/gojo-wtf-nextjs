@@ -57,7 +57,7 @@ function AnimeID({ animeid, data }) {
                 );
               })}
             </div>
-            <div className="flex flex-wrap gap-2 mt-4 text-[#939ba2] justify-center">
+            <div className="flex flex-wrap gap-2 mt-4 text-[#939ba2] justify-center md:justify-start">
               <span>
                 <Icon as={AiFillStar} className="mr-1" />
                 {data.rating}
