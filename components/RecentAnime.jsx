@@ -11,7 +11,7 @@ import RecentCard from "./Cards/RecentCard";
 function RecentAnime({ data }) {
   return (
     <div className="md:px-[10.5rem] py-8 px-4">
-      <h1 className="text-3xl text-white font-bold">Recent Anime</h1>
+      <h1 className="text-3xl text-white font-bold">Recent</h1>
       <div className="flex flex-wrap gap-4">
         <Swiper
           scrollbar={{

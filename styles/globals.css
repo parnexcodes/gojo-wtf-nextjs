@@ -2,3 +2,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* target the active bullet */
+.swiper-pagination-bullet-active {
+    background-color: lightgreen!important;
+    opacity: 1;
+  }
+
+  .swiper-pagination-bullet-active-next {
+    background-color: white!important;
+    opacity: 1;
+  }
+
+  .swiper-pagination-bullet-active-next-next {
+    background-color: white!important;
+    opacity: 1;
+  }
+  
+  .swiper-pagination-bullet-active-prev {
+    background-color: white!important;
+    opacity: 1;
+  }
+  

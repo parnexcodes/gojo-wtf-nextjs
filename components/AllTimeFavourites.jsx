@@ -8,10 +8,10 @@ import "swiper/css/scrollbar";
 
 import TrendingCard from "./Cards/TrendingCard";
 
-function TrendingAnime({ data }) {
+function AllTimeFavourites({ data }) {
   return (
     <div className="md:px-[10.5rem] md:py-8 px-4">
-      <h1 className="text-3xl text-white font-bold">Trending</h1>
+      <h1 className="text-3xl text-white font-bold">All Time Favourites</h1>
       <div className="flex flex-wrap gap-4">
         <Swiper
           scrollbar={{
@@ -52,4 +52,4 @@ function TrendingAnime({ data }) {
   );
 }
 
-export default TrendingAnime;
+export default AllTimeFavourites;
