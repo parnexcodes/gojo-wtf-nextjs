@@ -6,6 +6,7 @@ import Header from "../../../components/Header";
 import { Icon } from "@chakra-ui/icons";
 import { AiFillStar } from "react-icons/ai";
 import { FaPlay } from "react-icons/fa";
+import Footer from "../../../components/Footer";
 
 export async function getServerSideProps(context) {
   let { animeid } = context.params;
@@ -107,6 +108,7 @@ function AnimeID({ animeid, data }) {
           </h1>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

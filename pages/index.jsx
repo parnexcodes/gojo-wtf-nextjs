@@ -2,6 +2,7 @@ import React from "react";
 
 // Import Components
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import RecentAnime from "../components/RecentAnime";
 import TrendingAnime from "../components/TrendingAnime";
 import PopularAnime from "../components/PopularAnime";
@@ -36,6 +37,7 @@ function Home({ recent, trending, popular }) {
       <RecentAnime data={recent} />
       <TrendingAnime data={trending} />
       <PopularAnime data={popular} />
+      <Footer />
     </>
   );
 }

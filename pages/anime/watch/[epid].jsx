@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { Spinner } from '@chakra-ui/react'
 
 import Header from "../../../components/Header";
+import Footer from "../../../components/Footer";
 const VideoPlayer = dynamic(() => import('../../../components/Player/VideoPlayer'), {
   ssr: false
 })
@@ -80,6 +81,15 @@ function EpID() {
             </div>
           )}
         </div>
+        <div className="flex justify-center mt-4 space-x-4">
+          <h1
+            role={"button"}
+            onClick={() => handleRoutePushClick(id)}
+            className="p-4 bg-lime-500 inline-block mt-6 rounded-md font-bold text-black  hover:opacity-75 cursor-pointer"
+          >
+            Back
+          </h1>
+        </div>
         <div className="flex flex-wrap mx-16 justify-center gap-2">
           {data && data ? data?.episodes?.map((item, index) => {
             return (
@@ -95,16 +105,8 @@ function EpID() {
             );
           }): null}
         </div>
-        <div className="flex justify-center mt-8 space-x-4">
-          <h1
-            role={"button"}
-            onClick={() => handleRoutePushClick(id)}
-            className="p-4 bg-lime-500 inline-block mt-6 rounded-md font-bold text-black  hover:opacity-75 cursor-pointer"
-          >
-            Back
-          </h1>
-        </div>
       </div>
+      <Footer />
     </>
   );
 }
