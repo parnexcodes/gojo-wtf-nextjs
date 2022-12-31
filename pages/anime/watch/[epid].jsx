@@ -9,30 +9,56 @@ const VideoPlayer = dynamic(() => import('../../../components/Player/VideoPlayer
   ssr: false
 })
 
-export async function getServerSideProps(context) {
-  let { epid } = context.params
-  let { id } = context.query
-  const [streamData, metaData] = await Promise.all([
-    (
-      await fetch(
-        `https://gojo-wtf-api.vercel.app/anime/gogoanime/watch/${epid}?server=vidstreaming`
-      )
-    ).json(),
-    (
-      await fetch(`https://gojo-wtf-api.vercel.app/meta/anilist/info/${id}`)
-    ).json(),
-  ]);
-  return {
-    props: { streamData, metaData, id }, // will be passed to the page component as props
-  }
-}
+// export async function getServerSideProps(context) {
+//   let { epid } = context.params
+//   let { id } = context.query
+//   const [streamData, metaData] = await Promise.all([
+//     (
+//       await fetch(
+//         `https://gojo-wtf-api.vercel.app/anime/gogoanime/watch/${epid}?server=vidstreaming`
+//       )
+//     ).json(),
+//     (
+//       await fetch(`https://gojo-wtf-api.vercel.app/meta/anilist/info/${id}`)
+//     ).json(),
+//   ]);
+//   return {
+//     props: { streamData, metaData, id }, // will be passed to the page component as props
+//   }
+// }
 
-function EpID({ streamData, metaData, id }) {
+function EpID() {
   const router = useRouter()
+  const [rerender, setRerender] = useState(false)
+  const { epid, id } = router.query;
+  const [data, setData] = useState();
+  const [streamData, setStreamData] = useState();
+
+  const fetchData = async (epid, id) => {
+    const [streamData, data] = await Promise.all([
+      (
+        await fetch(
+          `https://gojo-wtf-api.vercel.app/anime/gogoanime/watch/${epid}?server=vidstreaming`
+        )
+      ).json(),
+      (
+        await fetch(`https://gojo-wtf-api.vercel.app/meta/anilist/info/${id}`)
+      ).json(),
+    ]);
+    setData(data);
+    setStreamData(streamData);
+    setRerender(!rerender)
+  };
+
+  useEffect(() => {
+    fetchData(epid, id);
+  }, [router.query.epid]);
+
+
   const handleClick = (epid, id) => {
-    // setEp(ep)
-    router.push(`/anime/watch/${epid}?id=${id}`).then(() => router.reload())
-    // setShow(false)
+    setRerender(!rerender)
+    router.push(`/anime/watch/${epid}?id=${id}`, undefined, { shallow: true })
+    // .then(() => router.reload())
   }
 
   const handleRoutePushClick = (id) => {
@@ -44,7 +70,7 @@ function EpID({ streamData, metaData, id }) {
       <Header />
       <div className="min-h-screen bg-[#181B22] pb-16">
         <div className="mx-8 pt-8">
-          {streamData && streamData ? (
+          {streamData && streamData && rerender ? (
             <VideoPlayer data={streamData} 
             // show={show} ep={ep}
             />
@@ -55,7 +81,7 @@ function EpID({ streamData, metaData, id }) {
           )}
         </div>
         <div className="flex flex-wrap mx-16 justify-center gap-2">
-          {metaData && metaData ? metaData?.episodes?.map((item, index) => {
+          {data && data ? data?.episodes?.map((item, index) => {
             return (
               <div key={index}>
                 <h1
