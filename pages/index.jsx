@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 
 // Import Components
 import Header from "../components/Header";
@@ -33,6 +34,9 @@ export async function getServerSideProps(context) {
 function Home({ recent, trending, popular }) {
   return (
     <>
+      <Head>
+        <title>Gojo - Watch anime for free, no ads</title>
+      </Head>
       <Header />
       <RecentAnime data={recent} />
       <TrendingAnime data={trending} />

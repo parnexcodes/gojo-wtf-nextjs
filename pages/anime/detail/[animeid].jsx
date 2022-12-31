@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Head from "next/head";
 import sanitizeHtml from "sanitize-html";
 
 import Header from "../../../components/Header";
@@ -25,6 +26,22 @@ export async function getServerSideProps(context) {
 function AnimeID({ animeid, data }) {
   return (
     <>
+      <Head>
+        <title>
+          {data.title.english != null
+            ? data.title.english
+            : data.title.userPreferred}{" "}
+          - gojo
+        </title>
+        <meta
+          name="og:description"
+          content={sanitizeHtml(data.description, {
+            allowedTags: [],
+            allowedAttributes: {},
+          }).trim()}
+        ></meta>
+        <meta property="og:image" content={data.cover} />
+      </Head>
       <Header />
       <div className="min-h-screen bg-[#181B22]">
         <img
@@ -48,9 +65,7 @@ function AnimeID({ animeid, data }) {
               {data.genres.map((item, index) => {
                 return (
                   <Link key={index} href={"/"}>
-                    <div
-                      className="p-2 text-white text-xs bg-[#282C37] hover:bg-lime-500 hover:text-black rounded-md"
-                    >
+                    <div className="p-2 text-white text-xs bg-[#282C37] hover:bg-lime-500 hover:text-black rounded-md">
                       {item}
                     </div>
                   </Link>
@@ -99,7 +114,9 @@ function AnimeID({ animeid, data }) {
           </div>
         </div>
         <div className="mx-10">
-          <h1 className="text-3xl text-white flex justify-center md:justify-start">Overview</h1>
+          <h1 className="text-3xl text-white flex justify-center md:justify-start">
+            Overview
+          </h1>
           <h1 className="text-[#939ba2] break-all mt-2">
             {sanitizeHtml(data.description, {
               allowedTags: [],

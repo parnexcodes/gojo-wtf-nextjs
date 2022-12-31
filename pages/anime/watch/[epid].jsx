@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
-import { Spinner } from '@chakra-ui/react'
+import { Spinner } from "@chakra-ui/react";
 
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
-const VideoPlayer = dynamic(() => import('../../../components/Player/VideoPlayer'), {
-  ssr: false
-})
+const VideoPlayer = dynamic(
+  () => import("../../../components/Player/VideoPlayer"),
+  {
+    ssr: false,
+  }
+);
 
 // export async function getServerSideProps(context) {
 //   let { epid } = context.params
@@ -28,8 +31,8 @@ const VideoPlayer = dynamic(() => import('../../../components/Player/VideoPlayer
 // }
 
 function EpID() {
-  const router = useRouter()
-  const [rerender, setRerender] = useState(false)
+  const router = useRouter();
+  const [rerender, setRerender] = useState(false);
   const { epid, id } = router.query;
   const [data, setData] = useState();
   const [streamData, setStreamData] = useState();
@@ -47,23 +50,22 @@ function EpID() {
     ]);
     setData(data);
     setStreamData(streamData);
-    setRerender(!rerender)
+    setRerender(!rerender);
   };
 
   useEffect(() => {
     fetchData(epid, id);
   }, [router.query.epid]);
 
-
   const handleClick = (epid, id) => {
-    setRerender(!rerender)
-    router.push(`/anime/watch/${epid}?id=${id}`, undefined, { shallow: true })
+    setRerender(!rerender);
+    router.push(`/anime/watch/${epid}?id=${id}`, undefined, { shallow: true });
     // .then(() => router.reload())
-  }
+  };
 
   const handleRoutePushClick = (id) => {
-    router.push(`/anime/detail/${id}`)
-  }
+    router.push(`/anime/detail/${id}`);
+  };
 
   return (
     <>
@@ -71,12 +73,13 @@ function EpID() {
       <div className="min-h-screen bg-[#181B22] pb-16">
         <div className="mx-8 pt-8">
           {streamData && streamData && rerender ? (
-            <VideoPlayer data={streamData} 
-            // show={show} ep={ep}
+            <VideoPlayer
+              data={streamData}
+              // show={show} ep={ep}
             />
           ) : (
             <div className="flex flex-col items-center text-white text-4xl">
-              <Spinner color='#84cc16' size='xl'/>
+              <Spinner color="#84cc16" size="xl" />
               <h1 className="text-white text-lg mt-4">Fetching ...</h1>
             </div>
           )}
@@ -91,19 +94,21 @@ function EpID() {
           </h1>
         </div>
         <div className="flex flex-wrap mx-16 justify-center gap-2">
-          {data && data ? data?.episodes?.map((item, index) => {
-            return (
-              <div key={index}>
-                <h1
-                  role={"button"}
-                  onClick={() => handleClick(item.id, id)}
-                  className="p-1 pl-4 pr-4 bg-[#282C37] inline-block mt-6 rounded-md font-bold text-white hover:bg-lime-500 hover:text-black cursor-pointer"
-                >
-                  {item.number}
-                </h1>
-              </div>
-            );
-          }): null}
+          {data && data
+            ? data?.episodes?.map((item, index) => {
+                return (
+                  <div key={index}>
+                    <h1
+                      role={"button"}
+                      onClick={() => handleClick(item.id, id)}
+                      className="p-1 pl-4 pr-4 bg-[#282C37] inline-block mt-6 rounded-md font-bold text-white hover:bg-lime-500 hover:text-black cursor-pointer"
+                    >
+                      {item.number}
+                    </h1>
+                  </div>
+                );
+              })
+            : null}
         </div>
       </div>
       <Footer />
