@@ -8,6 +8,7 @@ export default function Document() {
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/@vime/core@^5/themes/default.css"
         />
+        <link rel="shortcut icon" href="/favicon.png" />
       </Head>
       <body>
         <Main />
