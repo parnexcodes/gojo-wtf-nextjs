@@ -9,7 +9,7 @@ function VideoPlayer({ data }) {
   return (
     <div>
       {data ? (
-        <VimePlayer theme="dark" style={{ "--vm-player-theme": "#84cc16" }} autoplay={true}>
+        <VimePlayer theme="dark" style={{ "--vm-player-theme": "#84cc16" }}>
           <Hls crossOrigin>
             <source data-src={autoQuality[0].url} type="application/x-mpegURL" />
           </Hls>
