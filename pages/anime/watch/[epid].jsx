@@ -81,7 +81,7 @@ function EpID() {
             </div>
           )}
         </div>
-        <div className="flex justify-center mt-4 space-x-4">
+        <div className="flex justify-center space-x-4">
           <h1
             role={"button"}
             onClick={() => handleRoutePushClick(id)}
