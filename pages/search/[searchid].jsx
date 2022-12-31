@@ -26,7 +26,7 @@ function SearchPage(props) {
             View all
           </a>
         </div> */}
-        <div className="flex flex-wrap gap-8 px-6">
+        <div className="flex flex-wrap gap-2 md:gap-4">
           {data && data
             ? data.map((item, index) => {
                     return (
