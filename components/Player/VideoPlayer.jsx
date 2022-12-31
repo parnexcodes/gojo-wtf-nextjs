@@ -29,11 +29,6 @@ function VideoPlayer({ data }) {
         hls(),
       ])
       .create()
-      .on(["error", "pluginerror"], ({ type, payload }) => {
-        if (payload?.fatal) {
-          setSourceIndex(sourceIndex + 1);
-        }
-      });
   }, []);
 
   return (

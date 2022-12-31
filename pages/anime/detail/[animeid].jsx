@@ -31,13 +31,13 @@ function AnimeID({ animeid, data }) {
           src={data.cover}
           alt=""
         />
-        <div className="flex h-[280px]">
+        <div className="md:flex md:h-[280px]">
           <img
-            className="h-96 rounded-md relative z-20 bottom-32 left-10"
+            className="h-96 rounded-md relative z-20 md:bottom-32 bottom-20 md:left-10 left-[100px]"
             src={data.image}
             alt=""
           />
-          <div className="ml-20 mt-8 flex flex-col">
+          <div className="md:ml-20 mx-10 md:mt-8 mb-8 flex flex-col">
             <span className="text-4xl font-bold text-white">
               {data.title.english != null
                 ? data.title.english
@@ -56,7 +56,7 @@ function AnimeID({ animeid, data }) {
                 );
               })}
             </div>
-            <div className="flex space-x-2 mt-4 text-[#939ba2]">
+            <div className="flex flex-wrap space-x-2 mt-4 text-[#939ba2]">
               <span>
                 <Icon as={AiFillStar} className="mr-1" />
                 {data.rating}
