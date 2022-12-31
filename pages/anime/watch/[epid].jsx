@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
-import { FaPlay } from "react-icons/fa";
-import { Icon } from "@chakra-ui/icons";
+import { Spinner } from '@chakra-ui/react'
 
 import Header from "../../../components/Header";
 const VideoPlayer = dynamic(() => import('../../../components/Player/VideoPlayer'), {
@@ -75,8 +74,9 @@ function EpID() {
             // show={show} ep={ep}
             />
           ) : (
-            <div className="flex justify-center text-white text-4xl">
-              Loading...
+            <div className="flex flex-col items-center text-white text-4xl">
+              <Spinner color='#84cc16' size='xl'/>
+              <h1 className="text-white text-lg mt-4">Fetching ...</h1>
             </div>
           )}
         </div>
