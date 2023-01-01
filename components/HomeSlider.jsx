@@ -38,16 +38,16 @@ function HomeSlider({ data }) {
                   alt=""
                 />
                 <div className="flex justify-between">
-                  <h1 className="text-white md:bottom-16 bottom-24 relative left-8 text-2xl font-extrabold">
+                  <h1 className="text-white md:bottom-16 bottom-10 break-words relative md:left-8 left-4 md:text-2xl text-sm font-extrabold truncate w-48 md:w-max">
                     {item.title.english != null
                       ? item.title.english
                       : item.title.userPreferred}
                   </h1>
                   <Link
-                    className="md:flex md:justify-center md:self-start md:bottom-24 md:right-8 md:relative hidden"
+                    className="mflex justify-center self-start bottom-24 right-8 relative"
                     href={`/anime/detail/${item.id}`}
                   >
-                    <div className="pt-3 pb-3 pr-8 pl-8 mt-4 hover:opacity-90 bg-lime-500 text-black rounded-md">
+                    <div className="md:pt-3 pt-1 md:pb-3 pb-1 md:pr-8 pr-4 md:pl-8 pl-4 md:mt-4 mt-[52px] hover:opacity-90 bg-lime-500 text-black rounded-md text-sm md:text-base">
                       <Icon as={FaPlay} className="mr-3" />
                       Watch
                     </div>
