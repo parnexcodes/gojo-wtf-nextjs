@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Head from "next/head";
+import { NextSeo } from "next-seo";
 import sanitizeHtml from "sanitize-html";
 
 import Header from "../../../components/Header";
@@ -26,46 +26,33 @@ export async function getServerSideProps(context) {
 function AnimeID({ animeid, data }) {
   return (
     <>
-      <Head>
-        <title>
-          {data.title.english != null
-            ? data.title.english
-            : data.title.userPreferred}{" "}
-          - gojo
-        </title>
-        <meta
-          name="og:description"
-          content={sanitizeHtml(data.description, {
+      {data && data ? (
+        <NextSeo
+          title={
+            data.title.english != null
+              ? "Watch " + data.title.english + " - gojo"
+              : "Watch " + data.title.userPreferred + " - gojo"
+          }
+          description={sanitizeHtml(data.description, {
             allowedTags: [],
             allowedAttributes: {},
           }).trim()}
-        ></meta>
-        <meta
-          name="description"
-          content={sanitizeHtml(data.description, {
-            allowedTags: [],
-            allowedAttributes: {},
-          }).trim()}
-        ></meta>
-        <meta property="og:image" content={data.image} />
-        <meta property="image" content={data.image} />
-        <meta
-          name="title"
-          content={`
-${
-  data.title.english != null ? data.title.english : data.title.userPreferred
-} - gojo`}
-        ></meta>
-        <meta
-          name="og:title"
-          content={`
-${
-  data.title.english != null ? data.title.english : data.title.userPreferred
-} - gojo`}
-        ></meta>
-        <meta property="og:url" content={`https://gojo-wtf-nextjs.vercel.app/anime/detail/${animeid}`}></meta>
-        <meta property="url" content={`https://gojo-wtf-nextjs.vercel.app/anime/detail/${animeid}`}></meta>
-      </Head>
+          openGraph={{
+            url: `https://gojo-wtf-nextjs.vercel.app/anime/detail/${animeid}`,
+            title: `${
+              data.title.english != null
+                ? "Watch " + data.title.english + " - gojo"
+                : "Watch " + data.title.userPreferred + " - gojo"
+            }`,
+            description: sanitizeHtml(data.description, {
+              allowedTags: [],
+              allowedAttributes: {},
+            }).trim(),
+            images: [{ url: data.image }],
+            siteName: "gojo-wtf-nextjs.vercel.app",
+          }}
+        />
+      ) : null}
       <Header />
       <div className="min-h-screen bg-[#181B22]">
         <img
@@ -127,6 +114,7 @@ ${
                 pathname: `/anime/watch/${data.episodes[0].id}`,
                 query: {
                   id: animeid,
+                  ep: data.episodes[0].number,
                 },
               }}
             >

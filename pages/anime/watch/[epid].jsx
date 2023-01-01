@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { Spinner } from "@chakra-ui/react";
+import sanitizeHtml from "sanitize-html";
 
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
+import { NextSeo } from "next-seo";
+
 const VideoPlayer = dynamic(
   () => import("../../../components/Player/VideoPlayer"),
   {
@@ -12,28 +15,10 @@ const VideoPlayer = dynamic(
   }
 );
 
-// export async function getServerSideProps(context) {
-//   let { epid } = context.params
-//   let { id } = context.query
-//   const [streamData, metaData] = await Promise.all([
-//     (
-//       await fetch(
-//         `https://gojo-wtf-api.vercel.app/anime/gogoanime/watch/${epid}?server=vidstreaming`
-//       )
-//     ).json(),
-//     (
-//       await fetch(`https://gojo-wtf-api.vercel.app/meta/anilist/info/${id}`)
-//     ).json(),
-//   ]);
-//   return {
-//     props: { streamData, metaData, id }, // will be passed to the page component as props
-//   }
-// }
-
 function EpID() {
   const router = useRouter();
   const [rerender, setRerender] = useState(false);
-  const { epid, id } = router.query;
+  const { epid, id, ep } = router.query;
   const [data, setData] = useState();
   const [streamData, setStreamData] = useState();
 
@@ -57,9 +42,11 @@ function EpID() {
     router.query.epid ? fetchData(epid, id) : null;
   }, [router.isReady, router.query.epid]);
 
-  const handleClick = (epid, id) => {
+  const handleClick = (epid, id, epnum) => {
     setRerender(!rerender);
-    router.push(`/anime/watch/${epid}?id=${id}`, undefined, { shallow: true });
+    router.push(`/anime/watch/${epid}?id=${id}&ep=${epnum}`, undefined, {
+      shallow: true,
+    });
     // .then(() => router.reload())
   };
 
@@ -67,13 +54,44 @@ function EpID() {
     router.push(`/anime/detail/${id}`);
   };
 
-  if (streamData) {
-    console.log(streamData)
-  }
-
   return (
     <>
       <Header />
+      {data && data ? (
+        <NextSeo
+          title={
+            data.title.english != null
+              ? "Watching " +
+                data.title.english +
+                " Episode - " +
+                ep +
+                " | gojo"
+              : "Watching " +
+                data.title.userPreferred +
+                " Episode - " +
+                ep +
+                " | gojo"
+          }
+          description={sanitizeHtml(data.description, {
+            allowedTags: [],
+            allowedAttributes: {},
+          }).trim()}
+          openGraph={{
+            url: `https://gojo-wtf-nextjs.vercel.app/anime/watch/${epid}?id=${id}&ep=${ep}`,
+            title: `Watch ${
+              data.title.english != null
+                ? data.title.english
+                : data.title.userPreferred
+            }`,
+            description: sanitizeHtml(data.description, {
+              allowedTags: [],
+              allowedAttributes: {},
+            }).trim(),
+            images: [{ url: data.image }],
+            siteName: "gojo-wtf-nextjs.vercel.app",
+          }}
+        />
+      ) : null}
       <div className="min-h-screen bg-[#181B22] pb-16">
         <div className="mx-8 pt-8">
           {streamData && streamData && rerender ? (
@@ -104,7 +122,7 @@ function EpID() {
                   <div key={index}>
                     <h1
                       role={"button"}
-                      onClick={() => handleClick(item.id, id)}
+                      onClick={() => handleClick(item.id, id, item.number)}
                       className="p-1 pl-4 pr-4 bg-[#282C37] inline-block mt-6 rounded-md font-bold text-white hover:bg-lime-500 hover:text-black cursor-pointer"
                     >
                       {item.number}

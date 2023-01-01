@@ -1,5 +1,5 @@
 import React from "react";
-import Head from "next/head";
+import { NextSeo } from "next-seo";
 
 // Import Components
 import Header from "../components/Header";
@@ -46,29 +46,18 @@ export async function getServerSideProps(context) {
 function Home({ recent, trending, popular, favourites }) {
   return (
     <>
-      <Head>
-        <title>Gojo - Watch anime for free, no ads</title>
-        <meta
-          name="og:description"
-          content="Gojo is an Anime Streaming Site with minimal UI and ad-free anime streaming experience."
-        ></meta>
-        <meta
-          name="description"
-          content="Gojo is an Anime Streaming Site with minimal UI and ad-free anime streaming experience."
-        ></meta>
-        <meta property="og:image" content="/logo.png" />
-        <meta property="image" content="/logo.png" />
-        <meta name="og:title" content="gojo.wtf"></meta>
-        <meta name="title" content="gojo.wtf"></meta>
-        <meta
-          property="og:url"
-          content="https://gojo-wtf-nextjs.vercel.app"
-        ></meta>
-        <meta
-          property="url"
-          content="https://gojo-wtf-nextjs.vercel.app"
-        ></meta>
-      </Head>
+      <NextSeo
+        title="Gojo - Watch anime for free, no ads"
+        description="Gojo is an Anime Streaming Site with minimal UI and ad-free anime streaming experience."
+        openGraph={{
+          url: "https://gojo-wtf-nextjs.vercel.app",
+          title: "Gojo - Watch anime for free, no ads",
+          description:
+            "Gojo is an Anime Streaming Site with minimal UI and ad-free anime streaming experience.",
+          images: [{ url: "/logo.png" }],
+          siteName: "gojo-wtf-nextjs.vercel.app",
+        }}
+      />
       <Header />
       <HomeSlider data={trending} />
       <RecentAnime data={recent} />
