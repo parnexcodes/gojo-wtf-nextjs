@@ -54,8 +54,8 @@ function EpID() {
   };
 
   useEffect(() => {
-    fetchData(epid, id);
-  }, [router.query.epid]);
+    router.query.epid ? fetchData(epid, id) : null;
+  }, [router.isReady, router.query.epid]);
 
   const handleClick = (epid, id) => {
     setRerender(!rerender);
@@ -66,6 +66,10 @@ function EpID() {
   const handleRoutePushClick = (id) => {
     router.push(`/anime/detail/${id}`);
   };
+
+  if (streamData) {
+    console.log(streamData)
+  }
 
   return (
     <>

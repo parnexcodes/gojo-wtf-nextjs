@@ -23,4 +23,14 @@
     background-color: white!important;
     opacity: 1;
   }
+
+  .swiper-button-prev {
+    color: lightgreen!important;
+    opacity: 1;
+  }
+
+  .swiper-button-next {
+    color: lightgreen!important;
+    opacity: 1;
+  }
   
