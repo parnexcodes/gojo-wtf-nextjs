@@ -4,6 +4,8 @@ import { NextSeo } from "next-seo";
 import sanitizeHtml from "sanitize-html";
 
 import Header from "../../../components/Header";
+import Characters from "../../../components/Characters";
+import Recommendations from "../../../components/Recommendations";
 import { Icon } from "@chakra-ui/icons";
 import { AiFillStar } from "react-icons/ai";
 import { FaPlay } from "react-icons/fa";
@@ -26,33 +28,31 @@ export async function getServerSideProps(context) {
 function AnimeID({ animeid, data }) {
   return (
     <>
-      {data && data ? (
-        <NextSeo
-          title={
+      <NextSeo
+        title={
+          data.title.english != null
+            ? "Watch " + data.title.english + " - gojo"
+            : "Watch " + data.title.userPreferred + " - gojo"
+        }
+        description={sanitizeHtml(data.description, {
+          allowedTags: [],
+          allowedAttributes: {},
+        }).trim()}
+        openGraph={{
+          url: `https://gojo-wtf-nextjs.vercel.app/anime/detail/${animeid}`,
+          title: `${
             data.title.english != null
               ? "Watch " + data.title.english + " - gojo"
               : "Watch " + data.title.userPreferred + " - gojo"
-          }
-          description={sanitizeHtml(data.description, {
+          }`,
+          description: sanitizeHtml(data.description, {
             allowedTags: [],
             allowedAttributes: {},
-          }).trim()}
-          openGraph={{
-            url: `https://gojo-wtf-nextjs.vercel.app/anime/detail/${animeid}`,
-            title: `${
-              data.title.english != null
-                ? "Watch " + data.title.english + " - gojo"
-                : "Watch " + data.title.userPreferred + " - gojo"
-            }`,
-            description: sanitizeHtml(data.description, {
-              allowedTags: [],
-              allowedAttributes: {},
-            }).trim(),
-            images: [{ url: data.image }],
-            siteName: "gojo-wtf-nextjs.vercel.app",
-          }}
-        />
-      ) : null}
+          }).trim(),
+          images: [{ url: data.image }],
+          siteName: "gojo-wtf-nextjs.vercel.app",
+        }}
+      />
       <Header />
       <div className="min-h-screen bg-[#181B22]">
         <img
@@ -136,6 +136,8 @@ function AnimeID({ animeid, data }) {
             }).trim()}
           </h1>
         </div>
+        <Characters data={data}/>
+        <Recommendations data={data} />
       </div>
       <Footer />
     </>

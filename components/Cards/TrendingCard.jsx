@@ -14,7 +14,7 @@ function TrendingCard({ data }) {
           <span className="font-bold">{data.title.english != null ? data.title.english : data.title.userPreferred}</span>
           <span className="text-xs pt-1">{data.status}</span>
           <div className='flex justify-between text-xs'>
-          <span>{data.releaseDate}</span>
+          <span>{data.releaseDate != null ? data.releaseDate : "Ep: " + data.episodes}</span>
           <span>{data.type}</span>
           </div>
         </div>
