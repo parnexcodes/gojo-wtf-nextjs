@@ -36,6 +36,17 @@ function EpID() {
     setData(data);
     setStreamData(streamData);
     setRerender(!rerender);
+
+    let specificEp = data?.episodes?.filter((episode) => episode.id == epid);
+
+    let recentlyWatched = [];
+    recentlyWatched = JSON.parse(localStorage.getItem("recentlyWatched")) || [];
+    let alreadyExist = recentlyWatched.some(obj => obj.id === epid);
+    console.log(alreadyExist)
+    if (!alreadyExist) {
+      recentlyWatched.push(specificEp[0]);
+      localStorage.setItem("recentlyWatched", JSON.stringify(recentlyWatched));
+    }
   };
 
   useEffect(() => {
