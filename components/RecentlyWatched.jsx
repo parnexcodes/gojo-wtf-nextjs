@@ -42,7 +42,7 @@ function RecentlyWatched({ data }) {
             {data.map((item, index) => {
               return (
                 <SwiperSlide key={index}>
-                  <Link href={`/anime/detail/${item.id}`}>
+                  <Link href={`/anime/watch/${item.epid}?id=${item.id}&ep=${item.ep}`}>
                     <RecentlyWatchedCard data={item} />
                   </Link>
                 </SwiperSlide>
