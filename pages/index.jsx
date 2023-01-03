@@ -20,17 +20,17 @@ export async function getServerSideProps(context) {
     ).json(),
     (
       await fetch(
-        "https://api.consumet.org/meta/anilist/advanced-search?sort=[%22TRENDING_DESC%22]"
+        "https://gojo-wtf-api.vercel.app/meta/anilist/advanced-search?sort=[%22TRENDING_DESC%22]"
       )
     ).json(),
     (
       await fetch(
-        "https://api.consumet.org/meta/anilist/advanced-search?sort=[%22POPULARITY_DESC%22]"
+        "https://gojo-wtf-api.vercel.app/meta/anilist/advanced-search?sort=[%22POPULARITY_DESC%22]"
       )
     ).json(),
     (
       await fetch(
-        "https://api.consumet.org/meta/anilist/advanced-search?sort=[%22FAVOURITES_DESC%22]"
+        "https://gojo-wtf-api.vercel.app/meta/anilist/advanced-search?sort=[%22FAVOURITES_DESC%22]"
       )
     ).json(),
   ]);
