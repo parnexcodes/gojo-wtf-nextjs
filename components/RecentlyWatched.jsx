@@ -53,7 +53,7 @@ function RecentlyWatched({ data }) {
           <div className="flex flex-wrap md:gap-4 gap-2">
             {data.map((item, index) => {
               return (
-                <Link href={`/anime/watch/${item.epid}?id=${item.id}&ep=${item.ep}`}>
+                <Link key={index} href={`/anime/watch/${item.epid}?id=${item.id}&ep=${item.ep}`}>
                   <RecentlyWatchedCard data={item} />
                 </Link>
               );
