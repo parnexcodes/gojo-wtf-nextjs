@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NextSeo } from "next-seo";
 
 // Import Components
@@ -9,6 +9,7 @@ import TrendingAnime from "../components/TrendingAnime";
 import PopularAnime from "../components/PopularAnime";
 import AllTimeFavourites from "../components/AllTimeFavourites";
 import HomeSlider from "../components/HomeSlider";
+import RecentlyWatched from "../components/RecentlyWatched";
 
 export async function getServerSideProps(context) {
   const [recent, trending, popular, allTimeFavourite] = await Promise.all([
@@ -44,6 +45,16 @@ export async function getServerSideProps(context) {
 }
 
 function Home({ recent, trending, popular, favourites }) {
+  const [exist, setExist] = useState(false)
+  const [recentData, setRecentData] = useState()
+  useEffect(() => {
+    if (localStorage.getItem('recentlyWatched') !== null) {
+      setExist(true)
+      setRecentData(JSON.parse(localStorage.getItem('recentlyWatched')))
+    } else {
+      setExist(false)
+    }
+  }, [])
   return (
     <>
       <NextSeo
@@ -60,6 +71,9 @@ function Home({ recent, trending, popular, favourites }) {
       />
       <Header />
       <HomeSlider data={trending} />
+      {exist ? (
+        <RecentlyWatched  data={recentData} />
+      ) : null}
       <RecentAnime data={recent} />
       <TrendingAnime data={trending} />
       <PopularAnime data={popular} />

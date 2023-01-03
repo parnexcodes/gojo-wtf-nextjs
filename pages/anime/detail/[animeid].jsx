@@ -32,7 +32,7 @@ function AnimeID({ animeid, data }) {
         title={
           data.title.english != null
             ? "Watch " + data.title.english + " - gojo"
-            : "Watch " + data.title.userPreferred + " - gojo"
+            : "Watch " + data.title.romaji + " - gojo"
         }
         description={sanitizeHtml(data.description, {
           allowedTags: [],
@@ -43,7 +43,7 @@ function AnimeID({ animeid, data }) {
           title: `${
             data.title.english != null
               ? "Watch " + data.title.english + " - gojo"
-              : "Watch " + data.title.userPreferred + " - gojo"
+              : "Watch " + data.title.romaji + " - gojo"
           }`,
           description: sanitizeHtml(data.description, {
             allowedTags: [],
@@ -70,7 +70,7 @@ function AnimeID({ animeid, data }) {
             <span className="text-4xl font-bold text-white text-center md:text-left">
               {data.title.english != null
                 ? data.title.english
-                : data.title.userPreferred}
+                : data.title.romaji}
             </span>
             <div className="flex flex-wrap gap-2 mt-4 justify-center md:justify-start">
               {data.genres.map((item, index) => {

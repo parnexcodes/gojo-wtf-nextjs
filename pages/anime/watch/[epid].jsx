@@ -37,14 +37,31 @@ function EpID() {
     setStreamData(streamData);
     setRerender(!rerender);
 
-    let specificEp = data?.episodes?.filter((episode) => episode.id == epid);
+    // let specificEp = data?.episodes?.filter((episode) => episode.id == epid);
 
     let recentlyWatched = [];
     recentlyWatched = JSON.parse(localStorage.getItem("recentlyWatched")) || [];
-    let alreadyExist = recentlyWatched.some(obj => obj.id === epid);
-    console.log(alreadyExist)
+    let alreadyExist = recentlyWatched.some((obj) => obj.id === id);
     if (!alreadyExist) {
-      recentlyWatched.push(specificEp[0]);
+      recentlyWatched.push({
+        id: id,
+        ep: ep,
+        title: data.title.english ? data.title.english : data.title.romaji,
+        image: data.image,
+        totalep: data.totalEpisodes
+      });
+      localStorage.setItem("recentlyWatched", JSON.stringify(recentlyWatched));
+    } else {
+      let indexval = recentlyWatched.findIndex((value) => value.id == id);
+      recentlyWatched.splice(indexval, 1)
+      recentlyWatched.push({
+        id: id,
+        ep: ep,
+        epid: epid,
+        title: data.title.english ? data.title.english : data.title.romaji,
+        image: data.image,
+        totalep: data.totalEpisodes
+      });
       localStorage.setItem("recentlyWatched", JSON.stringify(recentlyWatched));
     }
   };
@@ -78,7 +95,7 @@ function EpID() {
                 ep +
                 " | gojo"
               : "Watching " +
-                data.title.userPreferred +
+                data.title.romaji +
                 " Episode - " +
                 ep +
                 " | gojo"
@@ -92,7 +109,7 @@ function EpID() {
             title: `Watch ${
               data.title.english != null
                 ? data.title.english
-                : data.title.userPreferred
+                : data.title.romaji
             }`,
             description: sanitizeHtml(data.description, {
               allowedTags: [],

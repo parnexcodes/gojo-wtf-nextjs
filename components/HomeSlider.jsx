@@ -41,7 +41,7 @@ function HomeSlider({ data }) {
                   <h1 className="text-white md:bottom-16 bottom-10 break-words relative md:left-8 left-4 md:text-2xl text-sm font-extrabold truncate w-48 md:w-max">
                     {item.title.english != null
                       ? item.title.english
-                      : item.title.userPreferred}
+                      : item.title.romaji}
                   </h1>
                   <Link
                     className="mflex justify-center self-start bottom-24 right-8 relative"
