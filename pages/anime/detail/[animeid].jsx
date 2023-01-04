@@ -129,7 +129,7 @@ function AnimeID({ animeid, data }) {
           <h1 className="text-3xl text-white flex justify-center md:justify-start">
             Overview
           </h1>
-          <h1 className="text-[#939ba2] break-all mt-2">
+          <h1 className="text-[#939ba2] text-sm break-all mt-2">
             {sanitizeHtml(data.description, {
               allowedTags: [],
               allowedAttributes: {},

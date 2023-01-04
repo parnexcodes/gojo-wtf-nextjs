@@ -7,11 +7,11 @@ import { AiOutlineUser } from "react-icons/ai";
 function Header() {
   return (
     <div className="bg-[#282C37]">
-      <div className="flex justify-between mx-8 py-6 flex-wrap">
+      <div className="flex md:justify-between justify-center py-4 flex-wrap">
         <Link href={'/'}>
-        <img className="h-[64px] rounded-full" src="/logo.png" alt="" />
+        <img className="h-[50px] rounded-full" src="/logo.png" alt="" />
         </Link>
-        <ul className="flex gap-4 text-white py-2">
+        {/* <ul className="flex gap-4 text-white py-2">
           <Link href={"/"}>
             <li className="bg-[#2E343E] hover:bg-lime-500 hover:text-black px-4 py-2 rounded-md">Trending</li>
           </Link>
@@ -21,18 +21,17 @@ function Header() {
           <Link href={"/"}>
             <li className="bg-[#2E343E] hover:bg-lime-500 hover:text-black px-4 py-2 rounded-md">Recent</li>
           </Link>
-        </ul>
-        <ul className="flex gap-4 flex-wrap py-2">
+        </ul> */}
+        <ul className="md:flex md:gap-8 md:flex-wrap md:py-2 md:mx-8 hidden">
           <li>
             <Search />
           </li>
           <li className="pt-2">
             <a
-              className="bg-[#2E343E] hover:bg-lime-500 hover:text-black px-4 py-2 rounded-md text-white"
+              className="text-white"
               href="#"
             >
-              <Icon className="mr-2" as={AiOutlineUser} />
-              Login
+              <Icon as={AiOutlineUser} boxSize={'7'}/>
             </a>
           </li>
         </ul>

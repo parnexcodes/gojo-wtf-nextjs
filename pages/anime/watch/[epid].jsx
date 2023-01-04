@@ -46,6 +46,7 @@ function EpID() {
       recentlyWatched.push({
         id: id,
         ep: ep,
+        epid: epid,
         title: data.title.english ? data.title.english : data.title.romaji,
         image: data.image,
         totalep: data.totalEpisodes
