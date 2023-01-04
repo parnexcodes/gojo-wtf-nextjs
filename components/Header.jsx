@@ -40,9 +40,9 @@ function Header() {
                 <Search />
               </li>
               <li className="pt-2">
-                <a className="text-white" href="#">
+                <Link className="text-white" href="/">
                   <Icon as={AiOutlineUser} boxSize={"7"} />
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
