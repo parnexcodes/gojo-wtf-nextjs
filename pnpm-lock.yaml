@@ -6,9 +6,9 @@ specifiers:
   '@emotion/react': ^11
   '@emotion/styled': ^11
   '@next/font': 13.1.1
-  '@oplayer/core': 1.2.8-alpha.0
-  '@oplayer/hls': 1.2.5-alpha.0
-  '@oplayer/ui': 1.2.8-alpha.2
+  '@oplayer/core': ^1.2.10
+  '@oplayer/hls': ^1.2.7
+  '@oplayer/ui': ^1.2.16
   autoprefixer: ^10.4.13
   eslint: 8.30.0
   eslint-config-next: 13.1.1
@@ -31,9 +31,9 @@ dependencies:
   '@emotion/react': 11.10.5_react@18.2.0
   '@emotion/styled': 11.10.5_hp5f5nkljdiwilp4rgxyefcplu
   '@next/font': 13.1.1
-  '@oplayer/core': 1.2.8-alpha.0
-  '@oplayer/hls': 1.2.5-alpha.0_sjrfmg7b7b2pl3wkzohjfmyd2a
-  '@oplayer/ui': 1.2.8-alpha.2_mzrikbkr6tctw57wvtgtk6prqm
+  '@oplayer/core': 1.2.10
+  '@oplayer/hls': 1.2.7_jezxedem5hvvvxmt35ul2atcsi
+  '@oplayer/ui': 1.2.16_@oplayer+core@1.2.10
   eslint: 8.30.0
   eslint-config-next: 13.1.1_eslint@8.30.0
   framer-motion: 6.5.1_biqbaboplfbrettd7655fr4n2y
@@ -1571,26 +1571,26 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.14.0
 
-  /@oplayer/core/1.2.8-alpha.0:
-    resolution: {integrity: sha512-MdJLrJ6i3UzTv+R74DUpx2rnntzgodYLpRRUvz/Tjp3WA8++XkMhL6QQkc2izF7Olf07bTktksJsPV4oal9JqA==}
+  /@oplayer/core/1.2.10:
+    resolution: {integrity: sha512-4nbCQXhv2J1wvecax6oSgKQ6UDKcFULVmx/OmQLwYCDz4l+kdP8qKxtef5D2WBLym8ffG3X+s47/7N5ZZaLHYg==}
     dev: false
 
-  /@oplayer/hls/1.2.5-alpha.0_sjrfmg7b7b2pl3wkzohjfmyd2a:
-    resolution: {integrity: sha512-IQjvu1FPFNbLDfabDdfrXVzfya0dPx5fxR2qjR3EoeQI2b12CnuFcvxk6AF1Wu0Iac/AkUQlSlz/+z6WvXtqHw==}
+  /@oplayer/hls/1.2.7_jezxedem5hvvvxmt35ul2atcsi:
+    resolution: {integrity: sha512-x0IhDMPgRGxmoXGx8rNHYfl9sA/vkuzBLvPfrRwPxZ3hE4tnGEP+k769ZjcIhcyNJrH67wRS8yqyKTmGI6iLAw==}
     peerDependencies:
       '@oplayer/core': '>=1.0.0'
       hls.js: '*'
     dependencies:
-      '@oplayer/core': 1.2.8-alpha.0
+      '@oplayer/core': 1.2.10
       hls.js: 1.2.9
     dev: false
 
-  /@oplayer/ui/1.2.8-alpha.2_mzrikbkr6tctw57wvtgtk6prqm:
-    resolution: {integrity: sha512-eqGy4anuyIasIPAEGbCDxzOo2Ig3bboT2RPeoLjVhgytSU5x+tiYggrduxoA7Zss79sdobn5I2TCi/46ky8vXQ==}
+  /@oplayer/ui/1.2.16_@oplayer+core@1.2.10:
+    resolution: {integrity: sha512-DtYutg4YuPKTmxutth3NtFtMw7SeqhGqH082hatFTvuITBUGSiLR0t7xHSxiTP+l0jYTGtx2sS1r9jnX4yIPng==}
     peerDependencies:
       '@oplayer/core': '>=1.0.0'
     dependencies:
-      '@oplayer/core': 1.2.8-alpha.0
+      '@oplayer/core': 1.2.10
     dev: false
 
   /@pkgr/utils/2.3.1:

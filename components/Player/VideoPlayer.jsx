@@ -27,7 +27,6 @@ function VideoPlayer({ data }) {
           pictureInPicture: true,
           forceLandscapeOnFullscreen: true,
           autoFocus: true,
-          screenshot: true,
           fullscreen: true,
           theme: { primaryColor: '#90ee90' },
           speed: ['2.0', '1.75', '1.25', '1.0', '0.75', '0.5'],

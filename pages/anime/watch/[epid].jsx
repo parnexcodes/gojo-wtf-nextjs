@@ -144,7 +144,7 @@ function EpID() {
             Back
           </h1>
         </div>
-        <div className="flex flex-wrap mx-16 justify-center gap-2">
+        <div className="grid grid-cols-10 mx-[25rem] gap-4 justify-center">
           {data && data
             ? data?.episodes?.map((item, index) => {
                 return (
@@ -152,7 +152,7 @@ function EpID() {
                     <h1
                       role={"button"}
                       onClick={() => handleClick(item.id, id, item.number)}
-                      className="p-1 pl-4 pr-4 bg-[#282C37] inline-block mt-6 rounded-md font-bold text-white hover:bg-lime-500 hover:text-black cursor-pointer"
+                      className="p-2 text-center bg-[#282C37] rounded-md font-bold text-white hover:bg-lime-500 active:bg-lime-500 hover:text-black cursor-pointer"
                     >
                       {item.number}
                     </h1>
