@@ -26,11 +26,11 @@ function EpID() {
     const [streamData, data] = await Promise.all([
       (
         await fetch(
-          `https://gojo-wtf-api.vercel.app/anime/gogoanime/watch/${epid}?server=vidstreaming`
+          `https://gojo-parnexcodes.koyeb.app/anime/gogoanime/watch/${epid}?server=vidstreaming`
         )
       ).json(),
       (
-        await fetch(`https://gojo-wtf-api.vercel.app/meta/anilist/info/${id}`)
+        await fetch(`https://gojo-parnexcodes.koyeb.app/meta/anilist/info/${id}`)
       ).json(),
     ]);
     setData(data);
@@ -106,7 +106,7 @@ function EpID() {
             allowedAttributes: {},
           }).trim()}
           openGraph={{
-            url: `https://gojo-wtf-nextjs.vercel.app/anime/watch/${epid}?id=${id}&ep=${ep}`,
+            url: `https://gojo-parnexcodes.koyeb.app/anime/watch/${epid}?id=${id}&ep=${ep}`,
             title: `Watch ${
               data.title.english != null
                 ? data.title.english

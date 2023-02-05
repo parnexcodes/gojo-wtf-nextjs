@@ -6,7 +6,7 @@ import TrendingCard from "../../components/Cards/TrendingCard";
 export async function getServerSideProps(context) {
   let { searchid } = context.params;
   const req = await fetch(
-    `https://gojo-wtf-api.vercel.app/meta/anilist/${searchid}`
+    `https://gojo-parnexcodes.koyeb.app/meta/anilist/${searchid}`
   );
   const res = await req.json();
   return {

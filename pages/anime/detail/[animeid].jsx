@@ -14,7 +14,7 @@ import Footer from "../../../components/Footer";
 export async function getServerSideProps(context) {
   let { animeid } = context.params;
   const req = await fetch(
-    `https://gojo-wtf-api.vercel.app/meta/anilist/info/${animeid}`
+    `https://gojo-parnexcodes.koyeb.app/meta/anilist/info/${animeid}`
   );
   const res = await req.json();
   return {
@@ -39,7 +39,7 @@ function AnimeID({ animeid, data }) {
           allowedAttributes: {},
         }).trim()}
         openGraph={{
-          url: `https://gojo-wtf-nextjs.vercel.app/anime/detail/${animeid}`,
+          url: `https://gojo-parnexcodes.koyeb.app/anime/detail/${animeid}`,
           title: `${
             data.title.english != null
               ? "Watch " + data.title.english + " - gojo"
