@@ -15,22 +15,22 @@ export async function getServerSideProps(context) {
   const [recent, trending, popular, allTimeFavourite] = await Promise.all([
     (
       await fetch(
-        "https://gojo-parnexcodes.koyeb.app/meta/anilist/recent-episodes"
+        "https://gojo-api.onrender.com/meta/anilist/recent-episodes"
       )
     ).json(),
     (
       await fetch(
-        "https://gojo-parnexcodes.koyeb.app/meta/anilist/advanced-search?sort=[%22TRENDING_DESC%22]"
+        "https://gojo-api.onrender.com/meta/anilist/advanced-search?sort=[%22TRENDING_DESC%22]"
       )
     ).json(),
     (
       await fetch(
-        "https://gojo-parnexcodes.koyeb.app/meta/anilist/advanced-search?sort=[%22POPULARITY_DESC%22]"
+        "https://gojo-api.onrender.com/meta/anilist/advanced-search?sort=[%22POPULARITY_DESC%22]"
       )
     ).json(),
     (
       await fetch(
-        "https://gojo-parnexcodes.koyeb.app/meta/anilist/advanced-search?sort=[%22FAVOURITES_DESC%22]"
+        "https://gojo-api.onrender.com/meta/anilist/advanced-search?sort=[%22FAVOURITES_DESC%22]"
       )
     ).json(),
   ]);
